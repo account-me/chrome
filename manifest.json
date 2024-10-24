@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Email Extractor",
+    "version": "1.0",
+    "icons": {
+        "128": "icon_128.png"
+    },
+    "description": "Extracts email addresses from Google search results.",
+    "permissions": ["activeTab", "scripting", "storage"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://booking.flynas.com/*"],
+        "js": ["jq.js","content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "persistent": true,
+      "default_icon": {
+        "16": "icon_128.png",
+        "128": "icon_128.png"
+      }
+    }
+  }
+  

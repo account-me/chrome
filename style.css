@@ -1,0 +1,40 @@
+body
+{
+    padding: 10px;
+}
+
+
+.pop-box
+{
+    width: 300px;
+    height: 400px;
+    min-width: 300px;
+    min-height: 400px;
+    
+}
+
+
+#clear-emails-btn
+{
+    margin-left: 20px;
+    background: darkred;
+    
+}
+
+
+#copy-emails-btn
+{
+    background: darkslateblue;
+}
+.pop-box button
+{
+    font-size: 15px;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 46%;
+
+}
