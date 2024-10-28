@@ -39,34 +39,45 @@ getButton.addEventListener('click', () => {
 			
 		});
 		
+		var index1 = 1;
+		var index1 = 2;
+		
 		list1.forEach(function(x1){
+			if(index1 > 6){
+				continue;
+			}
+			index1++
 			var de1 = x1.depart1;
 			var parts1x = de1.trim().split(" ");
 			var city1x = parts1x[0];
-			var time1x = parts1x[1];
-			console.log(time1x);
-			var timeInNumber1x = parseInt(time1x.replace(":", ""), 10);
+			var timelist1x = de1.match(/\d+/g);
+			var timeInNumber1x = parseInt(timelist1x.join(''));
 			
 			
 			var ar1 = x1.arrive1;
 			var parts1xx = ar1.trim().split(" ");
 			var city1xx = parts1xx[0];
-			var time1xx = parts1xx[1];
-			var timeInNumber1xx = parseInt(time1xx.replace(":", ""), 10);
+			var timelist1xx = ar1.match(/\d+/g);
+			var timeInNumber1xx = parseInt(timelist1xx.join(''));
 			var am1 = x1.amount1;
 			
 			list2.forEach(function(x2){
+				if(index2 > 6){
+					continue;
+				}
+				index2++
 				var de2 = x2.depart2;
+				console.log(de2);
 				var parts2x = de2.trim().split(" ");
 				var city2x = parts2x[0];
-				var time2x = parts2x[1];
-				var timeInNumber2x = parseInt(time2x.replace(":", ""), 10);
+				var timelist2x = de2.match(/\d+/g);
+				var timeInNumber2x = parseInt(timelist2x.join(''));
 				
 				var ar2 = x2.arrive2;
 				var parts2xx = de2.trim().split(" ");
 				var city2xx = parts2xx[0];
-				var time2xx = parts2xx[1];
-				var timeInNumber2xx = parseInt(time2xx.replace(":", ""), 10);
+				var timelist2xx = ar2.match(/\d+/g);
+				var timeInNumber2xx = parseInt(timelist2xx.join(''));
 				
 				var am2 = x2.amount2;
 				
