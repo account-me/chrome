@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	
+	setInterval(function() {
+		$(".btn-refresh").find('.picon').click();
+	}, 300000);
+	
+	
 	const getButton = document.createElement('button');
 	getButton.innerText = 'GET';
 	getButton.style.position = 'fixed';
@@ -131,33 +137,27 @@ $(document).ready(function() {
 			
 
 			flights.sort((a, b) => {
-			// أولاً، نقارن بناءً على `total`
 			if (a.total !== b.total) {
 				return a.total - b.total;
 			} 
-			// إذا كانت `total` متساوية، نقارن بناءً على `plus1`
 			return a.plus1 - b.plus1;
 			});
 
-			cheapestFlights = flights.slice(0, 5);
+			cheapestFlights = flights.slice(0, 3);
 			
 		
 
 		}
 
-	// إضافة حدث النقر على الزر "GET"
 
-		// استدعاء دالة استخراج البريد الإلكتروني
 		const extractedEmails = extractEmails();
 
-		// الحصول على البريد الإلكتروني المخزّن في التخزين المحلي
 		chrome.storage.local.get('flights', function(result) {
 			var storedFlights = result.flights || [];
 			storedFlights = storedFlights.concat(cheapestFlights);
 			chrome.storage.local.set({ flights: storedFlights });
 			console.log(storedFlights);
 			
-			// عرض البريد الإلكتروني المستخرج
 		});
 	});
 });
