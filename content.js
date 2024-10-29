@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	setInterval(function() {
 		$(".btn-refresh").find('.picon').click();
-	}, 300000);
+	}, 150000);
 	
 	
 	const getButton = document.createElement('button');
