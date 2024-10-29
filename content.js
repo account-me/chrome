@@ -26,7 +26,14 @@ getButton.addEventListener('click', () => {
 				var depart1 = $(this).find('.flight-time').first().text();
 				var arrive1 = $(this).find('.flight-time').last().text();
 				var amount1 = parseInt($(this).find('.priceInt').first().text());
-				var l1 = {"depart1": depart1, "arrive1": arrive1, "amount1": amount1};
+				var seatleft1 = $(this).find(".seatleft").text();
+				if(seatleft1 != ""){
+					seatleft1 = seatleft1.trim();
+				}else{
+					seatleft1 = "اكثر من 7 مقاعد";
+				}
+				console.log(seatleft1);
+				var l1 = {"depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 				list1.push(l1);
 				
 				
@@ -36,7 +43,13 @@ getButton.addEventListener('click', () => {
 				var depart2 = $(this).find('.flight-time').first().text();
 				var arrive2 = $(this).find('.flight-time').last().text();
 				var amount2 = parseInt($(this).find('.priceInt').first().text());
-				var l2 = {"depart2": depart2, "arrive2": arrive2, "amount2": amount2};
+				var seatleft2 = $(this).find(".seatleft").text();
+				if(seatleft2 != ""){
+					seatleft2 = seatleft2.trim();
+				}else{
+					seatleft2 = "اكثر من 7 مقاعد";
+				}
+				var l2 = {"depart2": depart2, "arrive2": arrive2, "amount2": amount2, "seatleft2":seatleft2};
 				list2.push(l2);
 				
 			});
@@ -54,6 +67,8 @@ getButton.addEventListener('click', () => {
 				var city1x = parts1x[0];
 				var timelist1x = de1.match(/\d+/g);
 				var timeInNumber1x = parseInt(timelist1x.join(''));
+				
+				var seatleft11 = x1.seatleft1;
 				
 				if(timeInNumber1x > 1900){return;}
 				
@@ -83,6 +98,8 @@ getButton.addEventListener('click', () => {
 					var timelist2xx = ar2.match(/\d+/g);
 					var timeInNumber2xx = parseInt(timelist2xx.join(''));
 					
+					var seatleft22 = x2.seatleft2;
+					
 					var timeBtween = timeInNumber1xx - timeInNumber2x;
 					var plus1 = timeBtween;
 					
@@ -98,7 +115,7 @@ getButton.addEventListener('click', () => {
 					}
 					
 					if(timeBtween < 600){
-						var xxx = {"depart1": de1, "arrive1": ar1, "amount1": am1,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1};
+						var xxx = {"depart1": de1, "arrive1": ar1, "amount1": am1,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
 						flights.push(xxx);
 					}
 					
