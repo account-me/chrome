@@ -23,7 +23,8 @@ $(document).ready(function() {
 				var list1 = [];
 				var list2 = [];
 			
-				$('.panel-body').first().find('.flight_table').each(function() {
+				$('#custom-panel-0').find('.flight_table').each(function() {
+					var date1 = $("#custom-panel-0").find(".subtitle").text().trim();
 					var depart1 = $(this).find('.flight-time').first().text();
 					var arrive1 = $(this).find('.flight-time').last().text();
 					var amount1 = parseInt($(this).find('.priceInt').first().text());
@@ -33,14 +34,15 @@ $(document).ready(function() {
 					}else{
 						seatleft1 = "اكثر من 7 مقاعد";
 					}
-					console.log(seatleft1);
-					var l1 = {"depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					
+					var l1 = {"date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 					list1.push(l1);
 					
 					
 				});
 				
-				$('.panel-body').last().find('.flight_table').each(function() {
+				$('#custom-panel-1').find('.flight_table').each(function() {
+					var date2 = $('#custom-panel-1').find(".subtitle").text().trim();
 					var depart2 = $(this).find('.flight-time').first().text();
 					var arrive2 = $(this).find('.flight-time').last().text();
 					var amount2 = parseInt($(this).find('.priceInt').first().text());
@@ -50,7 +52,7 @@ $(document).ready(function() {
 					}else{
 						seatleft2 = "اكثر من 7 مقاعد";
 					}
-					var l2 = {"depart2": depart2, "arrive2": arrive2, "amount2": amount2, "seatleft2":seatleft2};
+					var l2 = {"date2":date2,"depart2": depart2, "arrive2": arrive2, "amount2": amount2, "seatleft2":seatleft2};
 					list2.push(l2);
 					
 				});
@@ -63,6 +65,8 @@ $(document).ready(function() {
 				
 				index1++
 				try{
+					
+					var date11 = x1.date1;
 					var de1 = x1.depart1.trim();
 					var parts1x = de1.trim().split(" ");
 					var city1x = parts1x[0];
@@ -86,7 +90,7 @@ $(document).ready(function() {
 					
 					index2++
 					try{
-						
+						var date22 = x2.date2;
 						var de2 = x2.depart2.trim();
 						var parts2x = de2.trim().split(" ");
 						var city2x = parts2x[0];
@@ -116,7 +120,7 @@ $(document).ready(function() {
 						}
 						
 						if(timeBtween < 600){
-							var xxx = {"depart1": de1, "arrive1": ar1, "amount1": am1,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
+							var xxx = {"date1":date11,"depart1": de1, "arrive1": ar1, "amount1": am1,"date2":date22,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
 							flights.push(xxx);
 						}
 						
