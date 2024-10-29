@@ -1,9 +1,3 @@
-
-// Retrieve the emails from the database when the popup is opened
-
-
-
-// Add an event listener to the button
 $(document).ready(function() {
   $('#clear-emails-btn').on('click', function() {
     chrome.storage.local.remove('flights', function() {
