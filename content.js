@@ -16,16 +16,13 @@ $(document).ready(function() {
 			"ديسمبر": "12"
 		};
 
-		// تقسيم السلسلة النصية
 		const parts = dateString.split(" ");
-		const day = parts[1]; // اليوم
-		const monthName = parts[2]; // اسم الشهر
-		const year = parts[3]; // السنة
+		const day = parts[1];
+		const monthName = parts[2];
+		const year = parts[3];
 
-		// الحصول على رقم الشهر من الخريطة
 		const month = monthsMap[monthName];
 
-		// تكوين التاريخ بالتنسيق المطلوب
 		return `${year}-${month}-${day.padStart(2, '0')}`;
 	}
 	
@@ -47,7 +44,62 @@ $(document).ready(function() {
 	getButton.style.borderRadius = '20px 0px';
 	getButton.style.cursor = 'pointer';
 
+	
+	const getNext = document.createElement('a');
+	getNext.innerText = '>>>';
+	getNext.style.position = 'fixed';
+	getNext.style.top = '60%';
+	getNext.style.right = '50px';
+	getNext.style.zIndex = '1001';
+	getNext.style.padding = '10px 20px';
+	getNext.style.color = '#4f4f4f';
+	getNext.style.cursor = 'pointer';
+	
+
+	const getNext2 = document.createElement('a');
+	getNext2.innerText = '<<<';
+	getNext2.style.position = 'fixed';
+	getNext2.style.top = '60%';
+	getNext2.style.right = '1px';
+	getNext2.style.zIndex = '1001';
+	getNext2.style.padding = '10px 20px';
+	getNext2.style.color = '#4f4f4f';
+	getNext2.style.cursor = 'pointer';
+
+	
 	document.body.appendChild(getButton);
+	document.body.appendChild(getNext);
+	document.body.appendChild(getNext2);
+
+	
+	
+getNext.addEventListener('click', () => {
+
+	var date00 = $("#custom-panel-0").find(".subtitle").text().trim();
+	var currentDate = new Date(convertArabicDateToISO(date00));
+	currentDate.setDate(currentDate.getDate() + 1);
+	let year = currentDate.getFullYear();
+	let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+	let day = String(currentDate.getDate()).padStart(2, '0');
+	let thisDay = `${year}-${month}-${day}`;
+	var link1 = "https://booking.flynas.com/#/booking/search-redirect?origin=RUH&destination=AMM&origin1=JED&destination1=AMM&currency=SAR&departureDate="+thisDay+"&returnDate="+thisDay+"&flightMode=multi&adultCount=1&childCount=0&infantCount=0&promoCode=&naSmiles=false&specialDiscount=null&culture=en-GB&reference=undefined&multicityObject=%5B%7B%22origin%22%3A%22MED%22%2C%22destination%22%3A%22AMM%22%2C%22departureDate%22%3A%22"+thisDay+"%22%7D%2C%7B%22origin%22%3A%22DMM%22%2C%22destination%22%3A%22AMM%22%2C%22departureDate%22%3A%22"+thisDay+"%22%7D%2C%7B%22origin%22%3A%22TIF%22%2C%22destination%22%3A%22AMM%22%2C%22departureDate%22%3A%22"+thisDay+"%22%7D%5D&locationsource=SA";
+	window.location.href = link1;
+
+});
+
+getNext2.addEventListener('click', () => {
+	
+	var date00 = $("#custom-panel-0").find(".subtitle").text().trim();
+	var currentDate = new Date(convertArabicDateToISO(date00));
+	currentDate.setDate(currentDate.getDate() - 1);
+	let year = currentDate.getFullYear();
+	let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+	let day = String(currentDate.getDate()).padStart(2, '0');
+	let thisDay = `${year}-${month}-${day}`;
+	var link1 = "https://booking.flynas.com/#/booking/search-redirect?origin=RUH&destination=AMM&origin1=JED&destination1=AMM&currency=SAR&departureDate="+thisDay+"&returnDate="+thisDay+"&flightMode=multi&adultCount=1&childCount=0&infantCount=0&promoCode=&naSmiles=false&specialDiscount=null&culture=en-GB&reference=undefined&multicityObject=%5B%7B%22origin%22%3A%22MED%22%2C%22destination%22%3A%22AMM%22%2C%22departureDate%22%3A%22"+thisDay+"%22%7D%2C%7B%22origin%22%3A%22DMM%22%2C%22destination%22%3A%22AMM%22%2C%22departureDate%22%3A%22"+thisDay+"%22%7D%2C%7B%22origin%22%3A%22TIF%22%2C%22destination%22%3A%22AMM%22%2C%22departureDate%22%3A%22"+thisDay+"%22%7D%5D&locationsource=SA";
+	window.location.href = link1;
+
+});
 	
 
 getButton.addEventListener('click', () => {
@@ -69,7 +121,7 @@ getButton.addEventListener('click', () => {
 		// ------------------------------
 		
 		if(whatType.includes("عَمَّان") || whatType.includes("عمان")){
-			
+
 			
 			function getFlights(){
 			try{
