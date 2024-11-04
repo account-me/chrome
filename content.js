@@ -1,5 +1,34 @@
 $(document).ready(function() {
 	
+	function convertArabicDateToISO(dateString) {
+		const monthsMap = {
+			"يناير": "01",
+			"فبراير": "02",
+			"مارس": "03",
+			"أبريل": "04",
+			"مايو": "05",
+			"يونيو": "06",
+			"يوليو": "07",
+			"أغسطس": "08",
+			"سبتمبر": "09",
+			"أكتوبر": "10",
+			"نوفمبر": "11",
+			"ديسمبر": "12"
+		};
+
+		// تقسيم السلسلة النصية
+		const parts = dateString.split(" ");
+		const day = parts[1]; // اليوم
+		const monthName = parts[2]; // اسم الشهر
+		const year = parts[3]; // السنة
+
+		// الحصول على رقم الشهر من الخريطة
+		const month = monthsMap[monthName];
+
+		// تكوين التاريخ بالتنسيق المطلوب
+		return `${year}-${month}-${day.padStart(2, '0')}`;
+	}
+	
 	setInterval(function() {
 		$(".btn-refresh").find('.picon').click();
 	}, 150000);
@@ -12,22 +41,38 @@ $(document).ready(function() {
 	getButton.style.right = '20px';
 	getButton.style.zIndex = '1000';
 	getButton.style.padding = '10px 20px';
-	getButton.style.backgroundColor = '#4285F4';
-	getButton.style.color = '#ffffff';
-	getButton.style.border = 'none';
-	getButton.style.borderRadius = '5px';
+	getButton.style.backgroundColor = '#49d520';
+	getButton.style.color = '#4f4f4f';
+	getButton.style.border = '1px solid #5cb92f';
+	getButton.style.borderRadius = '20px 0px';
 	getButton.style.cursor = 'pointer';
 
 	document.body.appendChild(getButton);
+	
 
-	getButton.addEventListener('click', () => {
-		var cheapestFlights;
+getButton.addEventListener('click', () => {
+	var flights = [];
+	var list1 = [];
+	var list2 = [];
+	var amman = [];
+	var cheapestAmman;
+	var cheapestFlights;
+	var cheapestList1;
+	var cheapestList2;
+	var whatType = $('#custom-panel-0').find('.journey-title').text();
+	
+	
+	var url1 = window.location.href;
+	
+	if (url1.includes("flynas")) {
+		var site = "flynas";
+		// ------------------------------
 		
-		function extractEmails() {
+		if(whatType.includes("عَمَّان") || whatType.includes("عمان")){
+			
+			
+			function getFlights(){
 			try{
-				var flights = [];
-				var list1 = [];
-				var list2 = [];
 			
 				$('#custom-panel-0').find('.flight_table').each(function() {
 					var date1 = $("#custom-panel-0").find(".subtitle").text().trim();
@@ -41,11 +86,109 @@ $(document).ready(function() {
 						seatleft1 = "اكثر من 7 مقاعد";
 					}
 					
-					var l1 = {"date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					var dateNum1 = convertArabicDateToISO(date1);
+										
+					var l1 = {"site1":"flynas","dateNum1":dateNum1, "date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					amman.push(l1);
+					console.log(l1);
+					
+					
+				});
+				
+				$('#custom-panel-1').find('.flight_table').each(function() {
+					var date1 = $("#custom-panel-1").find(".subtitle").text().trim();
+					var depart1 = $(this).find('.flight-time').first().text();
+					var arrive1 = $(this).find('.flight-time').last().text();
+					var amount1 = parseInt($(this).find('.priceInt').first().text());
+					var seatleft1 = $(this).find(".seatleft").text();
+					if(seatleft1 != ""){
+						seatleft1 = seatleft1.trim();
+					}else{
+						seatleft1 = "اكثر من 7 مقاعد";
+					}
+					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					amman.push(l1);
+					
+				});
+				
+				$('#custom-panel-2').find('.flight_table').each(function() {
+					var date1 = $("#custom-panel-2").find(".subtitle").text().trim();
+					var depart1 = $(this).find('.flight-time').first().text();
+					var arrive1 = $(this).find('.flight-time').last().text();
+					var amount1 = parseInt($(this).find('.priceInt').first().text());
+					var seatleft1 = $(this).find(".seatleft").text();
+					if(seatleft1 != ""){
+						seatleft1 = seatleft1.trim();
+					}else{
+						seatleft1 = "اكثر من 7 مقاعد";
+					}
+					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					amman.push(l1);
+					
+				});
+				
+				$('#custom-panel-3').find('.flight_table').each(function() {
+					var date1 = $("#custom-panel-3").find(".subtitle").text().trim();
+					var depart1 = $(this).find('.flight-time').first().text();
+					var arrive1 = $(this).find('.flight-time').last().text();
+					var amount1 = parseInt($(this).find('.priceInt').first().text());
+					var seatleft1 = $(this).find(".seatleft").text();
+					if(seatleft1 != ""){
+						seatleft1 = seatleft1.trim();
+					}else{
+						seatleft1 = "اكثر من 7 مقاعد";
+					}
+					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					amman.push(l1);
+					
+				});
+				
+				$('#custom-panel-4').find('.flight_table').each(function() {
+					var date1 = $("#custom-panel-4").find(".subtitle").text().trim();
+					var depart1 = $(this).find('.flight-time').first().text();
+					var arrive1 = $(this).find('.flight-time').last().text();
+					var amount1 = parseInt($(this).find('.priceInt').first().text());
+					var seatleft1 = $(this).find(".seatleft").text();
+					if(seatleft1 != ""){
+						seatleft1 = seatleft1.trim();
+					}else{
+						seatleft1 = "اكثر من 7 مقاعد";
+					}
+					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					amman.push(l1);
+					
+				});
+			}catch(e){console.log(e);}
+			
+		}
+			
+			
+		}else{
+			function getFlights(){
+			try{
+			
+				$('#custom-panel-0').find('.flight_table').each(function() {
+					var date1 = $("#custom-panel-0").find(".subtitle").text().trim();
+					var depart1 = $(this).find('.flight-time').first().text();
+					var arrive1 = $(this).find('.flight-time').last().text();
+					var amount1 = parseInt($(this).find('.priceInt').first().text());
+					var seatleft1 = $(this).find(".seatleft").text();
+					if(seatleft1 != ""){
+						seatleft1 = seatleft1.trim();
+					}else{
+						seatleft1 = "اكثر من 7 مقاعد";
+					}
+					
+					var dateNum1 = convertArabicDateToISO(date1);
+					
+					
+					var l1 = {"site1":"flynas","dateNum1":dateNum1, "date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 					list1.push(l1);
 					
 					
 				});
+				
+				
 				
 				$('#custom-panel-1').find('.flight_table').each(function() {
 					var date2 = $('#custom-panel-1').find(".subtitle").text().trim();
@@ -58,12 +201,102 @@ $(document).ready(function() {
 					}else{
 						seatleft2 = "اكثر من 7 مقاعد";
 					}
-					var l2 = {"date2":date2,"depart2": depart2, "arrive2": arrive2, "amount2": amount2, "seatleft2":seatleft2};
+					
+					
+					var l2 = {"site2":"flynas","date2":date2,"depart2": depart2, "arrive2": arrive2, "amount2": amount2, "seatleft2":seatleft2};
 					list2.push(l2);
 					
 				});
 			}catch(e){}
+		}
+		}
+		
+		// ------------------------------
+	}else if (url1.includes("flyadeal")) {
+		var site = "flyadeal";
+		// ------------------------------
+		function getFlights(){
+			try{
+				var dateee1 = $("#bookingId-0").find(".date-tab-wrap.selected .date").first().find('strong').text().trim();
+				var dayName = $("#bookingId-0").find(".date-tab-wrap.selected .date").first().find('span').text().trim();
+				var dateee2 = $("#bookingId-0").find(".date-tab-wrap.selected .date").last().text().trim();
+				var parts1x = dateee1.split(" ");
+				var monthName = parts1x[1];
+				var parts2x = dateee2.split(" ");
+				var dayNum = parseInt(parts2x[1]).toString();
+				var yearNum = parts2x[2];
+
+				var date1y = dayName + ' ' + dayNum + ' ' + monthName + ' ' + yearNum;
+
+				var dateee3 = $("#bookingId-1").find(".date-tab-wrap.selected .date").first().find('strong').text().trim();
+				var dayName2 = $("#bookingId-1").find(".date-tab-wrap.selected .date").first().find('span').text().trim();
+				var dateee4 = $("#bookingId-1").find(".date-tab-wrap.selected .date").last().text().trim();
+				var parts2x = dateee3.split(" ");
+				var monthName2 = parts2x[1];
+				var parts22x = dateee4.split(" ");
+				var dayNum2 = parseInt(parts22x[1]).toString();
+				var yearNum2 = parts22x[2];
+
+				var date2y = dayName2 + ' ' + dayNum2 + ' ' + monthName2 + ' ' + yearNum2;
+
+				$('#bookingId-0').find('.flight_details_wrap').each(function() {
+					var date1 = date1y;
+					var city_depart1 = $(this).find('.journey_segments_span').first().text().trim();
+					var time_depart1 = $(this).find('.journey-schedule_time').first().text().trim();
+					var depart1 = city_depart1 + ' ' + time_depart1;
+					var city_arrive1 = $(this).find('.journey_segments_span').last().text().trim();
+					var time_arrive1 = $(this).find('.journey-schedule_time').last().text().trim();
+					var arrive1 = city_arrive1 + ' ' + time_arrive1;
+					var amount1 = parseInt($(this).find('.price').text().trim());
+					
+					var dateNum1 = convertArabicDateToISO(date1);
+					
+					
+					var l1 = {"site1":"flyadeal","dateNum1":dateNum1,"date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":"غير معروف"};
+					list1.push(l1);
+					
+					
+				});
+				
+				$('#bookingId-1').find('.flight_details_wrap').each(function() {
+	
+					var date2 = date2y;
+					var city_depart2 = $(this).find('.journey_segments_span').first().text().trim();
+					var time_depart2 = $(this).find('.journey-schedule_time').first().text().trim();
+					var depart2 = city_depart2 + ' ' + time_depart2;
+					var city_arrive2 = $(this).find('.journey_segments_span').last().text().trim();
+					var time_arrive2 = $(this).find('.journey-schedule_time').last().text().trim();
+					var arrive2 = city_arrive2 + ' ' + time_arrive2;
+					var amount2 = parseInt($(this).find('.price').text().trim());
+					
+	
+					var l2 = {"site2":"flyadeal","date2":date2,"depart2": depart2, "arrive2": arrive2, "amount2": amount2, "seatleft2":"غير معروف"};
+					list2.push(l2);
+					
+				});
+			}catch(e){
+				console.log(e);
+			}
+		}
+		// ------------------------------
+	}
+	
+	
+	function extractEmails() {
+		
+		if(whatType.includes("عَمَّان") || whatType.includes("عمان")){
 			
+			getFlights();
+			amman.sort((a, b) => {
+				return a.amount1 - b.amount1;
+			});
+			cheapestAmman = amman.slice(0, 3);
+			
+			
+		}else{
+			
+			getFlights();
+
 			var index1 = 1;
 			var index2 = 2;
 			
@@ -78,7 +311,7 @@ $(document).ready(function() {
 					var city1x = parts1x[0];
 					var timelist1x = de1.match(/\d+/g);
 					var timeInNumber1x = parseInt(timelist1x.join(''));
-					
+					var dNum = x1.dateNum1;
 					var seatleft11 = x1.seatleft1;
 					
 					if(timeInNumber1x > 1900){return;}
@@ -126,7 +359,7 @@ $(document).ready(function() {
 						}
 						
 						if(timeBtween < 600){
-							var xxx = {"date1":date11,"depart1": de1, "arrive1": ar1, "amount1": am1,"date2":date22,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
+							var xxx = {"site":site,"dateNum":dNum,"date1":date11,"depart1": de1, "arrive1": ar1, "amount1": am1,"date2":date22,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
 							flights.push(xxx);
 						}
 						
@@ -135,7 +368,6 @@ $(document).ready(function() {
 			
 			});
 			
-
 			flights.sort((a, b) => {
 			if (a.total !== b.total) {
 				return a.total - b.total;
@@ -143,22 +375,60 @@ $(document).ready(function() {
 			return a.plus1 - b.plus1;
 			});
 
+			list1.sort((a, b) => {
+				return a.amount1 - b.amount1;
+			});
+
+			list2.sort((a, b) => {
+				return a.amount2 - b.amount2;
+			});
+			
 			cheapestFlights = flights.slice(0, 3);
+			cheapestList1 = list1.slice(0, 3);
+			cheapestList2 = list2.slice(0, 3);
+		}
 			
 		
+		
+		getButton.style.backgroundColor = '#41a822';
+		setTimeout(function() {
+			getButton.style.backgroundColor = '#49d520';
+		}, 300);
+	
+		
+	
 
-		}
+	}
 
-
-		const extractedEmails = extractEmails();
-
-		chrome.storage.local.get('flights', function(result) {
-			var storedFlights = result.flights || [];
-			storedFlights = storedFlights.concat(cheapestFlights);
-			chrome.storage.local.set({ flights: storedFlights });
-			console.log(storedFlights);
-			
+	const extractedEmails = extractEmails();
+	
+	if(whatType.includes("عَمَّان") || whatType.includes("عمان")){
+		
+		chrome.storage.local.get('amman', function(result) {
+			var storedAmman = result.amman || [];
+			storedAmman = storedAmman.concat(cheapestAmman);
+			chrome.storage.local.set({ amman: storedAmman });
+			console.log(storedAmman);
 		});
-	});
+		
+			
+	}else{
+		chrome.storage.local.get(['flights', 'outbound', 'inbound'], function(result) {
+			var storedFlights = result.flights || [];
+			var storedOutbound = result.outbound || [];
+			var storedInbound = result.inbound || [];
+			storedFlights = storedFlights.concat(cheapestFlights);
+			storedOutbound = storedOutbound.concat(cheapestList1);
+			storedInbound = storedInbound.concat(cheapestList2);
+			chrome.storage.local.set({ flights: storedFlights });
+			chrome.storage.local.set({ outbound: storedOutbound });
+			chrome.storage.local.set({ inbound: storedInbound });
+		});
+	}
+
+	
+
+});
+	
 });
 
