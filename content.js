@@ -158,7 +158,9 @@ getButton.addEventListener('click', () => {
 					}else{
 						seatleft1 = "اكثر من 7 مقاعد";
 					}
-					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					var dateNum1 = convertArabicDateToISO(date1);
+					
+					var l1 = {"site1":"flynas","dateNum1":dateNum1,"date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 					amman.push(l1);
 					
 				});
@@ -174,7 +176,9 @@ getButton.addEventListener('click', () => {
 					}else{
 						seatleft1 = "اكثر من 7 مقاعد";
 					}
-					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					var dateNum1 = convertArabicDateToISO(date1);
+					
+					var l1 = {"site1":"flynas","dateNum1":dateNum1,"date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 					amman.push(l1);
 					
 				});
@@ -190,7 +194,9 @@ getButton.addEventListener('click', () => {
 					}else{
 						seatleft1 = "اكثر من 7 مقاعد";
 					}
-					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
+					var dateNum1 = convertArabicDateToISO(date1);
+					
+					var l1 = {"site1":"flynas","dateNum1":dateNum1,"date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 					amman.push(l1);
 					
 				});
@@ -206,6 +212,8 @@ getButton.addEventListener('click', () => {
 					}else{
 						seatleft1 = "اكثر من 7 مقاعد";
 					}
+					var dateNum1 = convertArabicDateToISO(date1);
+					
 					var l1 = {"site1":"flynas","date1":date1, "depart1": depart1, "arrive1": arrive1, "amount1": amount1, "seatleft1":seatleft1};
 					amman.push(l1);
 					
@@ -411,7 +419,7 @@ getButton.addEventListener('click', () => {
 						}
 						
 						if(timeBtween < 600){
-							var xxx = {"site":site,"dateNum":dNum,"date1":date11,"depart1": de1, "arrive1": ar1, "amount1": am1,"date2":date22,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
+							var xxx = {"site":site,"dateNum1":dNum,"date1":date11,"depart1": de1, "arrive1": ar1, "amount1": am1,"date2":date22,"depart2": de2, "arrive2": ar2, "amount2": am2, "total":total, "timeout": timeout1, "plus1":plus1, "seatleft1":seatleft11, "seatleft2":seatleft22};
 							flights.push(xxx);
 						}
 						
